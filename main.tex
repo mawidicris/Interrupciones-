@@ -49,20 +49,50 @@
 Tambien es conocido como corrupción del hardware o petición de interrupción, es un proceso en el cual se le envía una señal al procesador del equipo para ordenar la interrupción del proceso que se está realizando actualmente y proceda a realizar otro que se ha especificado con anterioridad. 
 
 
+
+\section{¿Se puede hablar de la historia de las interrupciones?}
+Claro, se puede tomar en cuenta que la primera vez que se usó un método que se puede considerar como una interrupción fue en los inicios de la computación misma, en lo que es conocido como el Polling; En los primeros sistemas de computación cuando una aplicación necesitaba leer la pulsación de una tecla, interrogaba continuamente al teclado esperando hasta que la tecla fuera presionada. Debido a la ausencia de sistemas multitarea, mientras se esperaba una tecla, no se podían ejecutar otras tareas. Esto presentaba un problema para la época y se trató de buscar una solución la cual llegó poco después, cuando la llamada interrupción del teclado apareció, esta requería usar el teclado como controlador del dispositivo es quien genera la orden solo cuando el sistema está listo para transferir datos. La CPU maneja estas interrupciones que el sistema operativo sabe como priorizar y obtener información de ellas.
+\section{¿Que tipo de interrupciones existen?}
+Existen dos tipos fundamentales, uno  es el que corresponde a eventos externos que generan un estado lógico y por transición un disparo. Esta puede ser por franco de de subida (De low a High) o de Franco de caída (High a Low); Esto habilita una badera de interrupción lo cual dependiendo de la señal enviada señala la localidad de la memoria correspondiente donde se encuentra la rutina de interrupción solicitada. 
 \newline
+Automanticamente el hardware limpia la bandera de interrupción, aunque también es posible hacerlo por software por medio de los respectivos bits habilitados en el registro de estado. 
+\newline
+El segundo tipo corresponde a las interrupciones que pueden ser cambiadas o reasignadas por software en los pins del microcontrolador, estas no necesariamente tienen bandera de interrupción. 
+\section{¿Cómo se hace la implementación de interrupciones a nivel de hardware?}
+Estas se presentan cuando es solicitada por uno de los componentes de hardware del equipo, es decir del tipo E/S. Después de enviada, la señal informa a la CPU que el dispositivo requiere atención e inmediatamente la CPU inicia el proceso de interrupción hasta que esta sea detenida y se pueda reanudar el proceso que se estaba atendiendo anteriormente.
+\newline
+La placa base del computador utiliza un controlador para decodificar las
+interrupciones que no son mas que señales eléctricas producidas por los
+dispositivos, coloca en el bus de datos información de que dispositivo interrumpió y
+activa la entrada INT de interrupción de la CPU. Este chip controlador protege a la
+CPU y la aísla de los dispositivos que interrumpen, además de proporcionar
+flexibilidad al diseño del sistema. El controlador de interrupciones tiene un registro
+de estado para permitir o inhibir las interrupciones en el sistema.
+\section{¿Cómo se implementan las interrupciones por software?}
+Son aquellas programadas por el usuario, es decir, elusuario decide cuando y donde ejecutarlas, generalmente son usadas para realizarentrada y salida.
+Este tipo de interrupciones son de prioridad más alta que las de hardware (enmascarables y no enmascarables), de forma que si se recibe una interrupción hardware mientras que se ejecuta una software, esta última tiene prioridad. 
+\newline
+Por potente que sea un lenguaje de programación, hay veces en las que hay que escribir una rutina usando el ensamblador o usando una llamada al sistema operativo. La forma de hacer ambas cosas varía algo según los compiladores
+
+
 
 
 \newpage
 
 \begin{thebibliography}{X}
-\bibitem{Baz} \textsc{John T. Baldwin} y \textsc{Olivier Lessmann},
-\textit{What is Russell's paradox?}, Recuperado de: https://www.scientificamerican.com/article/what-is-russells-paradox/,
-1998
+\bibitem{Baz} \textsc{Ing. Leonardo Ramírez L. }
+\textit{Lenguaje Ensamblador}, Recuperado de: https://sistemasitseldorado.files.wordpress.com/2010/09/lenguaje-ensamblador-tercera-parte-unidad-i.pdf,1998
 \bibitem{Baz}
-\textit{Teoremas de incompletitud de Gödel}, Recuperado de: https://es.wikipedia.org/wiki/Teoremas_de_incompletitud_de_G%C3%B6del
+\textit{Estructura de computadores}, Recuperado de: hhttp://www.fdi.ucm.es/profesor/jjruz/WEB2/Temas/Curso05_06/EC9.pdf
+\bibitem{Baz}
+\textit{Interrumpir - Interrupt}, Recuperado de: https://es.qwe.wiki/wiki/Interrupt
+\bibitem{Baz}
+\textit{Estructura de computadores}, Recuperado de: http://www.fdi.ucm.es/profesor/jjruz/WEB2/Temas/Curso05_06/EC9.pdf
+\bibitem{Baz}
+\textit{Sistema de entrada/salida}, 
+Recuperado de: http://cv.uoc.edu/annotation/8255a8c320f60c2bfd6c9f2ce11b2e7f/619469/PID_00218271/PID_00218271.html
 
-\bibitem{Baz} \textsc{Joseph Warren Dauben} 
-\textit{GEORG CANTOR: His Mathematics and Philosophy of the Infinite}, Recuperado de: https://math.dartmouth.edu/~matc/Readers/HowManyAngels/Cantor/Cantor.html, 1979
+
 
 \end{thebibliography}
 \end{document}
